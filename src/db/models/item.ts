@@ -3,14 +3,14 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
-const UserSchema = new Schema({
+const ItemSchema = new Schema({
     name: String,
-    email: String,
-    password: String,
+    description: String,
+    price: Number,
     created_at: Date,
     updated_at: Date
 });
 
-const User = mongoose.model('User', UserSchema);
+const Item = mongoose.model('Item', ItemSchema);
 
-export default User;
+export default Item;
