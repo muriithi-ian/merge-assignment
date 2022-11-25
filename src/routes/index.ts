@@ -1,5 +1,6 @@
 import express from 'express';
-import { getItems } from '../controllers/items';
+import { addItem, getItems } from '../controllers/items';
 const router = express.Router();
 
 router.get('/getItems', getItems);
+router.post('/addItem', addItem);

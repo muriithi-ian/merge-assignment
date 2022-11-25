@@ -1,12 +1,10 @@
 import mongoose from 'mongoose';
+import { ItemType } from '../../types/item';
 
 const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
 
 const CartSchema = new Schema({
-    user_id: ObjectId,
-    item_id: ObjectId,
-    quantity: Number,
+    items: [{ type: Schema.Types.ObjectId, ref: 'Item' }],
     created_at: Date,
     updated_at: Date
 });
