@@ -1,7 +1,14 @@
-import mongoose from "mongoose";
+import mongoose, { ConnectOptions } from "mongoose";
+import { mongoURL } from "../index";
+
+const mongoUrl = process.env.MONGO_DB_URL;
+
 
 const db = async () => {
-	return await mongoose.connect("mongodb://localhost:27017/cart", {});
+	return await mongoose.connect(mongoURL,{
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+	} as ConnectOptions );
 };
 
 export default db;

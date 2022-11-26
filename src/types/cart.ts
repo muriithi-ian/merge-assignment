@@ -1,10 +1,8 @@
-import {ItemType} from './item';
-
-
 interface CartType{
     _id: string;
-    items: ItemType[];
+    items: [{
+        itemId: string;
+        quantity: number;
+    }];
     quantity: number;
-    created_at: Date;
-    updated_at: Date;
 }

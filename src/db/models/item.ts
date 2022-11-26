@@ -7,9 +7,7 @@ const ItemSchema = new Schema({
     description: String,
     price: Number,
     quantity: Number,
-    created_at: Date,
-    updated_at: Date
-});
+}, { timestamps: true });
 
 const Item = mongoose.model('Item', ItemSchema);
 

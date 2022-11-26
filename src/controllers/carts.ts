@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import Cart from "../db/models/cart";
+import Item from "../db/models/item";
+import { ItemType } from "../types/item";
 
 export const getCarts = async (req: Request, res: Response) => {
     try {
@@ -7,17 +9,6 @@ export const getCarts = async (req: Request, res: Response) => {
         res.status(200).json(carts);
     } catch (error: any) {
         res.status(404).json({ message: error.message });
-    }
-}
-
-export const addCart = async (req: Request, res: Response) => {
-    const cart = req.body;
-    const newCart = new Cart(cart);
-    try {
-        await newCart.save();
-        res.status(201).json(newCart);
-    } catch (error: any) {
-        res.status(409).json({ message: error.message });
     }
 }
 
@@ -31,13 +22,32 @@ export const getCart = async (req: Request, res: Response) => {
     }
 }
 
-const addItemToCart = async (req: Request, res: Response) => {
+export const addItemToCart = async (req: Request, res: Response) => {
     const { id } = req.params;
-    const { itemIds } = req.body;
+    const { items } = req.body;
+    
     try {
         const cart = await Cart.findById(id);
-        cart.items.push(...itemIds);
-        await cart.save();
+        // loop through items and add them to the cart
+        items.forEach(async (item: any) => {
+            const { itemId, quantity } = item;
+            //if item quantity is less than available quantity, add it to the cart
+            const availableItemQuant:any = await Item.findById(itemId);
+            if (availableItemQuant?.quantity > quantity) {
+                cart?.items.push({ itemId, quantity });
+            }
+
+            // if item quantity is more than available quantity, add only available quantity to the cart
+            else if (availableItemQuant?.quantity <= quantity) {
+                cart?.items.push({ itemId, quantity: availableItemQuant?.quantity });
+            }
+
+            // update item quantity
+            const updatedItem = await Item.findByIdAndUpdate(itemId, { quantity: availableItemQuant?.quantity - quantity }, { new: true });
+
+
+        });
+        
         
         res.status(200).json(cart);
     } catch (error: any) {
