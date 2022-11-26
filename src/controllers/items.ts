@@ -18,6 +18,6 @@ export const addItem = async (req: Request, res: Response) => {
 		await newItem.save();
 		res.status(201).json(newItem);
 	} catch (error: any) {
-		res.status(409).json({ message: error.message });
+		res.status(400).json({ message: error.message });
 	}
 };
