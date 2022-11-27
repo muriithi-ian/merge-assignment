@@ -9,7 +9,7 @@ simple API with basic crud operations
 3. run `npm install`
 4. create a .env file from the .env.example and replace the values with your own
 5. run `npm run dev` to start the server
-6. try out the endpoints with postman or any other API testing tool
+6. import the [collection](Merge-Assignment.postman_collection.json) in postman and test the endpoints
 
 ## Endpoints
 1. GET / - returns a welcome message
