@@ -12,7 +12,7 @@ simple API with basic crud operations
 6. try out the endpoints with postman or any other API testing tool
 
 ## Endpoints
-1. GET /api/ - returns a welcome message
+1. GET / - returns a welcome message
 2. GET /api/getItems - returns all items in the database
 3. POST /api/addItem - adds an item to the database
 4. GET /api/getCarts - returns all carts in the database

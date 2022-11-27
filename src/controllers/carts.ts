@@ -75,6 +75,7 @@ export const removeItemFromCart = async (req: Request, res: Response) => {
         
         //update cart
         const updatedCart = await Cart.findByIdAndUpdate(id, { items: newCart}, { new: true });
+        res.status(200).json(updatedCart);
     }catch (error: any) {
         res.status(400).json({ message: error.message });
     }
