@@ -19,4 +19,6 @@ simple API with basic crud operations
 5. GET /api/getCart/:id - returns a cart with the specified id
 6. POST /api/addItemsToCart - adds a cart to the database and populates it with the items specified in the request body
 7. POST /api/addItemsToCart/:id - adds an item to a cart with the specified id
+8. POST /api/removeItemsFromCart/:id - removes an item from a cart with the specified id
+
 ```
