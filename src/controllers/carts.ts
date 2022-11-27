@@ -43,7 +43,7 @@ export const addItemToCart = async (req: Request, res: Response) => {
                 }
 
                 // update item quantity
-                const updatedItem = await Item.findByIdAndUpdate(itemId, { quantity: availableItemQuant?.quantity - quantity }, { new: true });
+                const updatedItem = await Item.findByIdAndUpdate(itemId, { quantity:  Math.max(0, availableItemQuant?.quantity - quantity) }, { new: true });
 
 
             });
